@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Te invito a mi bautismo y… ¡sorpresa!">
+    <meta property="og:title" content="Feli 🌼 | Bautismo — 10/1/26">
+    <meta property="og:description" content="Te invito a mi bautismo">
+    <title>🌼|Bautismo Felicitas — 10/1/26|🌼</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./images/Logo floral _Felicitas_ en morado.png">
+    <link rel="shortcut icon" type="image/png" href="./images/Logo floral _Felicitas_ en morado.png">
+    <link rel="apple-touch-icon" href="./images/Logo floral _Felicitas_ en morado.png">
+    <link rel="icon" type="image/x-icon" href="./images/Logo floral _Felicitas_ en morado.png">
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- AOS - Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    
+    <!-- Custom Styles -->
+    <link rel='stylesheet' href='css/styles.css'>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-end">
+                <button class="music-toggle playing" id="musicToggle" aria-label="Pausar/Reproducir música" onclick="toggleMusic()">
+                    <i class="bi bi-volume-up-fill" id="musicIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay para activar música -->
+    <div class="music-start-overlay" id="musicStartOverlay">
+        <div class="modal-particles" id="modalParticles"></div>
+        <div class="music-start-content">
+            <h2>🌼 Bautismo de Feli 🌼</h2>
+            <p>¡Tenemos una invitación especial para vos!</p>
+            <button class="btn-start-music" onclick="startWithMusic()">
+                <i class="bi bi-envelope-heart-fill"></i>
+                Abrir invitación
+            </button>
+        </div>
+    </div>
+
+    <!-- Efectos de scroll con colores de margarita -->
+    <div class="scroll-particles" id="scrollParticles"></div>
+    <div class="scroll-trail" id="scrollTrail"></div>
+
+    <!-- Botón volver arriba -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Volver arriba">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Lightbox para galería -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio de fondo -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="./images/Eterno Amor.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- PANTALLA 1: Invitación -->
+    <section id="screen1">
+        <div class="container">
+            <div class="invitation-content">
+                <!-- Foto de Feli -->
+                <div class="feli-photo-container" data-aos="zoom-in" data-aos-duration="1200">
+                    <div class="feli-photo-frame">
+                    
+                        <img src="./images/feli2.jpeg" alt="Feli" class="feli-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="photo-placeholder" style="display: none;">🌼</div>
+                    </div>
+                </div>
+                
+                
+                <p class="invitation-text" data-aos="fade-up" data-aos-delay="200">Te invito a mi bautismo</p>
+                <h1 class="event-date" data-aos="fade-up" data-aos-delay="400">Sábado 10 de Enero</h1>
+                <p class="event-time" data-aos="fade-up" data-aos-delay="600">desde las 17 hs.<br>a las 03 hs.</p>
+
+                <!-- Contador -->
+                <div class="countdown-section" data-aos="fade-up" data-aos-delay="800">
+                    <p class="countdown-title">Faltan...</p>
+                    <div class="countdown-grid">
+                        <div class="time-box" data-aos="flip-left" data-aos-delay="1000">
+                            <span class="time-number" id="days">0</span>
+                            <span class="time-label">Días</span>
+                        </div>
+                        <div class="time-box" data-aos="flip-left" data-aos-delay="1100">
+                            <span class="time-number" id="hours">0</span>
+                            <span class="time-label">Horas</span>
+                        </div>
+                        <div class="time-box" data-aos="flip-left" data-aos-delay="1200">
+                            <span class="time-number" id="minutes">0</span>
+                            <span class="time-label">Min</span>
+                        </div>
+                        <div class="time-box" data-aos="flip-left" data-aos-delay="1300">
+                            <span class="time-number" id="seconds">0</span>
+                            <span class="time-label">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="teaser-text" data-aos="fade-up" data-aos-delay="1400">Hay mucho<br>para festejar...</p>
+                <div class="arrow-down" data-aos="bounce-in" data-aos-delay="1600">↓</div>
+
+                <!-- Sobre -->
+                <div class="envelope-wrapper" onclick="openEnvelope(this)" data-aos="zoom-in" data-aos-delay="1800">
+                    <div class="envelope-box">
+                        <div class="envelope-base">
+                            <div class="envelope-lines">
+                                <div class="envelope-line"></div>
+                                <div class="envelope-line"></div>
+                                <div class="envelope-line"></div>
+                            </div>
+                        </div>
+                        <div class="envelope-content">
+                            <div class="seal-text">ABRIR</div>
+                            <p class="envelope-message">una sorpresa te espera...</p>
+                        </div>
+                        <div class="envelope-flap"></div>
+                    </div>
+                    <p class="click-hint">👆 Click para abrir el sobre</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 2: Sorpresa -->
+    <section id="screen2">
+        <div class="container">
+            <div class="surprise-content">
+                <h2 class="surprise-title typewriter-title" data-aos="zoom-in" data-aos-duration="1200">¡¡Mis papás se casan!! 💕</h2>
+
+                <div class="animated-rings" data-aos="fade-down" data-aos-delay="200">
+                    <div class="ring left-ring">💍</div>
+                    <div class="ring right-ring">💍</div>
+                </div>
+
+                <div class="couple-frame" data-aos="flip-up" data-aos-delay="400">
+                    <h3 class="couple-names">
+                        Pau <span class="couple-separator">&</span> Lucas
+                    </h3>
+                </div>
+
+                <div class="message-box typewriter-text">
+                    <p style="font-size: 1.6rem; line-height: 1.8; margin-bottom: 25px;" data-aos="fade-up" data-aos-delay="800">
+                        <span class="highlight-emphasis">Después de tanto amor y esperanza…</span><br>
+                        <span class="highlight-emphasis" style="font-size: 1.8rem;">¡Por fin llega el día que tanto soñamos!</span>
+                    </p>
+                    
+                    <p style="font-size: 1.35rem; line-height: 1.9; margin-bottom: 25px; opacity: 0.95;" data-aos="fade-up" data-aos-delay="1000">
+                        A lo largo de este camino compartido, nuestro amor fue creciendo, llenándonos de sueños, aprendizajes y momentos inolvidables. Y en medio de esta historia, llegó nuestra mayor bendición: <strong>nuestra hija</strong>, quien llenó nuestras vidas de luz y alegría. 
+                    </p>
+                    
+                    <p style="font-size: 1.35rem; line-height: 1.9; margin-bottom: 25px; opacity: 0.95;" data-aos="fade-up" data-aos-delay="1200">
+                        Hoy queremos dar un paso más y celebrar juntos un momento único: <strong>unir nuestras vidas</strong> frente a quienes más queremos, formando oficialmente esta hermosa familia que tanto soñamos.
+                    </p>
+                    
+                    <p style="font-size: 1.5rem; font-weight: 600; line-height: 1.8; margin-top: 30px; color: var(--gold);" data-aos="zoom-in" data-aos-delay="1400" data-aos-duration="1200">
+                        Tu presencia es el regalo más valioso que podemos recibir.<br>
+                        <span style="color: var(--dark-text); font-size: 1.35rem;">Acompañanos a vivir este día lleno de emoción, amor y felicidad. 💕</span>
+                    </p>
+                </div>
+
+                <div class="arrow-down" data-aos="bounce-in" data-aos-delay="1600">↓</div>
+
+                <button onclick="showScreen('screen3')" class="btn-confirm" data-aos="fade-up" data-aos-delay="1800">
+                    Más información
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 3: Información -->
+    <section id="screen3">
+        <div class="container">
+            <div class="info-section">
+                <h2 class="section-title typewriter-title text-center" style="color: #1a1a1a; text-align: center;" data-aos="fade-down" data-aos-duration="1200"><b>Información del Evento</b></h2>
+
+                <div class="row">
+                    <!-- Ceremonia Bautismo -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="info-card scroll-fade-in-left" data-aos="fade-right" data-aos-delay="200">
+                            <h3 class="card-title typewriter-title">
+                                <i class="bi bi-church"></i>
+                                Ceremonia del Bautismo
+                            </h3>
+                            <div class="info-detail">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <a href="https://maps.app.goo.gl/XUj9HtZTzrWcm2PZ7" 
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   style="text-decoration: none; color: inherit;">
+                                    <span><strong style="cursor: pointer; transition: color 0.3s ease;">Nuestra Señora del Carmen</strong></span>
+                                </a>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>10 de Enero, 2026 — 17:00 hs</span>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-clock"></i>
+                                <span>Duración aprox: 45 minutos</span>
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+
+                    <!-- Fiesta/Salón -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="info-card scroll-fade-in-right" data-aos="fade-left" data-aos-delay="400">
+                            <h3 class="card-title typewriter-title">
+                                <i class="bi bi-cake2"></i>
+                                Fiesta / Salón (Civil):
+                            </h3>
+                            <div class="info-detail">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <a href="https://maps.app.goo.gl/CaBRphAHrcUpD2a47?g_st=iw" 
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   style="text-decoration: none; color: inherit;">
+                                    <span><strong style="cursor: pointer; transition: color 0.3s ease;">La Casita</strong></span>
+                                </a>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>10 de Enero, 2026 — 18:00 hs</span>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-clock"></i>
+                                <span>Hasta las 03:00 hs</span>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+
+
+                    <!-- Mapa interactivo -->
+                    <div class="col-12 mb-4">
+                        <div class="info-card" data-aos="zoom-in" data-aos-delay="600">
+                            <h3 class="card-title">
+                                <i class="bi bi-map"></i>
+                                Ubicaciones del Evento
+                            </h3>
+                            
+                            <!-- Ubicaciones del Evento -->
+                            <div class="map-container">
+                                <div style="padding: 40px; text-align: center; background: linear-gradient(135deg, var(--beige), rgba(255, 255, 255, 0.9)); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                                    <div style="margin-bottom: 30px;">
+                                        <i class="bi bi-geo-alt-fill" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px;"></i>
+                                    </div>
+                                    <h5 style="color: var(--dark-text); margin-bottom: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">
+                                        Ubicaciones del Evento
+                                    </h5>
+                                    
+                       <!-- Ubicaciones en fila -->
+                       <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center; flex-wrap: wrap;">
+                           <!-- Capilla -->
+                           <div style="flex: 1; min-width: 200px; text-align: center;">
+                               <a href="https://maps.app.goo.gl/XUj9HtZTzrWcm2PZ7" 
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style="text-decoration: none; color: inherit;">
+                                   <h6 style="color: var(--dark-text); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; cursor: pointer; transition: color 0.3s ease;">
+                                       <i class="bi bi-building" style="color: var(--gold); margin-right: 10px;"></i>
+                                       Nuestra Señora del Carmen
+                                   </h6>
+                               </a>
+                               <a href="https://maps.app.goo.gl/XUj9HtZTzrWcm2PZ7" 
+                                  class="btn-map"
+                                  target="_blank"
+                                  rel="noopener noreferrer">
+                                   <i class="bi bi-map"></i>
+                                   Como llegar a la Capilla
+                               </a>
+                           </div>
+                           
+                           <!-- Separador vertical -->
+                           <div style="width: 1px; height: 80px; background: linear-gradient(180deg, transparent, var(--gold), transparent); align-self: center;"></div>
+                           
+                           <!-- La Casita -->
+                           <div style="flex: 1; min-width: 200px; text-align: center;">
+                               <a href="https://maps.app.goo.gl/CaBRphAHrcUpD2a47?g_st=iw" 
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style="text-decoration: none; color: inherit;">
+                                   <h6 style="color: var(--dark-text); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; cursor: pointer; transition: color 0.3s ease;">
+                                       <i class="bi bi-cake2" style="color: var(--gold); margin-right: 10px;"></i>
+                                       Fiesta / Salón  La Casita 
+                                   </h6>
+                               </a>
+                               <a href="https://maps.app.goo.gl/CaBRphAHrcUpD2a47?g_st=iw" 
+                                  class="btn-map"
+                                  target="_blank"
+                                  rel="noopener noreferrer">
+                                   <i class="bi bi-map"></i>
+                                   Como llegar a La Casita
+                               </a>
+                           </div>
+                       </div>
+                                </div>
+                            </div>
+
+                            <!-- Carrusel de fotos de los lugares -->
+                            <div class="location-carousel-container scroll-scale-in">
+                                <h4 style="color: var(--dark-text); margin: 30px 0 20px 0; font-family: 'Cormorant Garamond', serif; text-align: center;">
+                                    <i class="bi bi-camera" style="color: var(--gold);"></i>
+                                    Galería de los Lugares
+                                </h4>
+                                
+                                <div class="location-carousel">
+                                    <div class="carousel-wrapper">
+                                        <div class="carousel-track" id="carouselTrack">
+                                            <!-- Foto 1: Capilla -->
+                                            <div class="carousel-slide active">
+                                                <img src="./images/cap2.jpeg" alt="Capilla Falda del Carmen" loading="lazy" onerror="this.style.background='#ddd'; this.alt='❌ Imagen no encontrada: cap2.jpeg'; console.error('No se encontró: cap2.jpeg');">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Foto 3: Lugar 1 -->
+                                            <div class="carousel-slide">
+                                                <img src="./images/lug1.jpeg" alt="Salón de Fiestas" loading="lazy" onerror="this.style.background='#ddd'; this.alt='❌ Imagen no encontrada: lug1.jpeg'; console.error('No se encontró: lug1.jpeg');">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Foto 4: Lugar 2 -->
+                                            <div class="carousel-slide">
+                                                <img src="./images/lug2.jpeg" alt="Salón de Fiestas" loading="lazy" onerror="this.style.background='#ddd'; this.alt='❌ Imagen no encontrada: lug2.jpeg'; console.error('No se encontró: lug2.jpeg');">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Foto 5: Lugar 3 -->
+                                            <div class="carousel-slide">
+                                                <img src="./images/lug3.jpeg" alt="Salón de Fiestas" loading="lazy" onerror="this.style.background='#ddd'; this.alt='❌ Imagen no encontrada: lug3.jpeg'; console.error('No se encontró: lug3.jpeg');">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Foto 6: Lugar 4 -->
+                                            <div class="carousel-slide">
+                                                <img src="./images/lug4.jpeg" alt="Salón de Fiestas" loading="lazy" onerror="this.style.background='#ddd'; this.alt='❌ Imagen no encontrada: lug4.jpeg'; console.error('No se encontró: lug4.jpeg');">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Botones de navegación -->
+                                        <button class="carousel-btn carousel-prev" onclick="changeSlide(-1)">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </button>
+                                        <button class="carousel-btn carousel-next" onclick="changeSlide(1)">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Indicadores -->
+                                    <div class="carousel-indicators">
+                                        <span class="indicator active" onclick="currentSlide(1)"></span>
+                                        <span class="indicator" onclick="currentSlide(2)"></span>
+                                        <span class="indicator" onclick="currentSlide(3)"></span>
+                                        <span class="indicator" onclick="currentSlide(4)"></span>
+                                        <span class="indicator" onclick="currentSlide(5)"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Galería de fotos -->
+
+                   <!-- Instrucciones de confirmación -->
+                   <div class="col-12 mb-4">
+                    <div class="info-card" style="background: linear-gradient(135deg, var(--light-blue), rgba(255, 255, 255, 0.9));" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="card-title typewriter-title">
+                                <i class="bi bi-chat-heart"></i>
+                                <b>¡Confirmá tu asistencia!</b>
+                            </h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px; font-style: italic; color: var(--dark-text);">
+                                Para organizar mejor el evento, necesitamos saber si vas a acompañarnos.
+                            </p>
+                            <div class="info-detail">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Confirmar antes del 14 de Noviembre</span>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-person"></i>
+                                <span>Indicar número de personas (adultos y niños)</span>
+                            </div>
+                            <div class="info-detail">
+                                <i class="bi bi-heart"></i>
+                                <span>¡Tu presencia es nuestro mejor regalo!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Regalos -->
+                    <div class="col-12 mb-4">
+                        <div class="info-card gift-section" data-aos="flip-up" data-aos-delay="400">
+                            <h3 class="card-title typewriter-title">
+                                <i class="bi bi-gift-fill"></i>
+                                <b>Regalos</b>
+                            </h3>
+                            <p style="font-size: 1.3rem; margin-bottom: 30px; font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--dark-text);">
+                                Si aún así deseas hacernos un regalo,<br>
+                                podés hacerlo a través de nuestros alias:
+                            </p>
+                            
+                            <div class="text-center">
+                                <!-- Alias en Pesos -->
+                                <div class="gift-info" style="max-width: 450px; margin: 0 auto 25px; padding: 35px 30px; border: 3px solid var(--gold);">
+                                    <div class="gift-label" style="font-size: 1.3rem; margin-bottom: 15px; font-weight: 600;">
+                                        💵 $ Alias en Pesos Argentinos
+                                    </div>
+                                    <div class="gift-value" style="font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 10px;">
+                                        bautiboda1
+                                    </div>
+                                    <div class="gift-owner" style="font-size: 1.1rem; color: var(--dark-text); font-style: italic; margin-bottom: 20px;">
+                                        Titular: Paula Ferreyra
+                                    </div>
+                                    <button class="btn-copy" onclick="copyToClipboard('bautiboda1', 'Alias en Pesos')" style="font-size: 1.0rem; padding: 10px 30px;">
+                                        <i class="bi bi-clipboard"></i>
+                                        Copiar alias
+                                    </button>
+                                </div>
+
+                                <!-- Alias en Dólares -->
+                                <div class="gift-info" style="max-width: 450px; margin: 0 auto; padding: 35px 30px; border: 3px solid var(--soft-green);">
+                                    <div class="gift-label" style="font-size: 1.3rem; margin-bottom: 15px; font-weight: 600;">
+                                        💵 US$ Alias en Dólares
+                                    </div>
+                                    <div class="gift-value" style="font-size: 1.6rem; font-weight: 700; color: var(--soft-green); letter-spacing: 1px; margin-bottom: 10px;">
+                                        bautiboda2
+                                    </div>
+                                    <div class="gift-owner" style="font-size: 1.1rem; color: var(--dark-text); font-style: italic; margin-bottom: 20px;">
+                                        Titular: Paula Ferreyra
+                                    </div>
+                                    <button class="btn-copy" onclick="copyToClipboard('bautiboda2', 'Alias en Dólares')" style="font-size: 1.0rem; padding: 10px 30px; background: linear-gradient(135deg, var(--soft-green), #8FB099);">
+                                        <i class="bi bi-clipboard"></i>
+                                        Copiar alias
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 
+
+                    <!-- Botones finales -->
+                    <div class="col-12 text-center mt-4">
+                        <a href="https://wa.me/5491165680153?text=Hola%20Pau%20y%20Lucas%2C%20confirmo%20asistencia%20%E2%9C%A8" 
+                           class="btn-confirm"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           data-aos="fade-up"
+                           data-aos-delay="600">
+                            <i class="bi bi-whatsapp"></i>
+                            Confirmar asistencia
+                        </a>
+                        <a href="https://wa.me/5491165680153?text=Hola%20Pau%20y%20Lucas%2C%20tengo%20una%20consulta%20sobre%20el%20evento%20%E2%98%80%EF%B8%8F" 
+                           class="btn-confirm"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           data-aos="fade-up"
+                           data-aos-delay="800">
+                            <i class="bi bi-question-circle"></i>
+                            Consultar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-size: 0.9rem; margin: 10px 0;" data-aos="fade-up">
+                👗 Vestimenta: Elegante casual
+            </p>
+            <div class="hashtags" data-aos="fade-up" data-aos-delay="200">
+                #BautismoFeli #Pau&Lucas
+            </div>
+            <p style="font-size: 1.1rem; margin-top: 20px;" data-aos="zoom-in" data-aos-delay="400">
+                🌼 Con amor, Feli, Pau & Lucas 🌼
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS - Animate On Scroll Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
